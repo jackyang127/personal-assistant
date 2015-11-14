@@ -17,7 +17,9 @@ def dispatcher(command, arg):
     """ Does things """
     if command == "weather":
         print("Here's the weather forcast for "+arg)
-        print(apis.fetch_weather(arg))
+        weather_data = apis.fetch_weather(arg)
+        if type(weather_data) is dict and weather_data[arg]: # assume non-zero termperature at berkeley
+            print(apis.fetch_weather(arg))
     if command == "square":
         print("The square of " + arg + " is " + str(square(int(arg))))
     elif command == "go away":
